@@ -1,0 +1,45 @@
+{
+  "name": "SystemSetting",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Setting key name"
+    },
+    "value": {
+      "type": "string",
+      "description": "Setting value"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description of what this setting does"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "payment",
+        "general",
+        "ui",
+        "security"
+      ],
+      "default": "general",
+      "description": "Setting category"
+    }
+  },
+  "required": [
+    "key",
+    "value"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

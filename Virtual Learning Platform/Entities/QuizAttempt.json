@@ -1,0 +1,56 @@
+{
+  "name": "QuizAttempt",
+  "type": "object",
+  "properties": {
+    "quiz_id": {
+      "type": "string",
+      "description": "Quiz ID"
+    },
+    "user_id": {
+      "type": "string",
+      "description": "User ID"
+    },
+    "score": {
+      "type": "number",
+      "description": "Score achieved (percentage)"
+    },
+    "answers": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "description": "User's answers"
+    },
+    "time_taken": {
+      "type": "number",
+      "description": "Time taken in minutes"
+    },
+    "passed": {
+      "type": "boolean",
+      "description": "Whether the user passed"
+    }
+  },
+  "required": [
+    "quiz_id",
+    "user_id",
+    "score",
+    "answers"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "write": {
+      "user_id": "{{user.id}}"
+    }
+  }
+}

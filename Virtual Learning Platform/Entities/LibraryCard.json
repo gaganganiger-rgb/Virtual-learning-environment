@@ -1,0 +1,62 @@
+{
+  "name": "LibraryCard",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "User who owns the library card"
+    },
+    "card_number": {
+      "type": "string",
+      "description": "Unique library card number"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "suspended",
+        "expired"
+      ],
+      "default": "active",
+      "description": "Library card status"
+    },
+    "issue_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date when card was issued"
+    },
+    "expiry_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Card expiry date"
+    },
+    "max_books": {
+      "type": "number",
+      "default": 5,
+      "description": "Maximum books user can borrow"
+    }
+  },
+  "required": [
+    "user_id",
+    "card_number"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

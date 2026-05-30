@@ -1,0 +1,59 @@
+{
+  "name": "BookAccess",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "User accessing the book"
+    },
+    "book_id": {
+      "type": "string",
+      "description": "Book being accessed"
+    },
+    "access_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When user accessed the book"
+    },
+    "last_page": {
+      "type": "number",
+      "default": 1,
+      "description": "Last page user was reading"
+    },
+    "reading_progress": {
+      "type": "number",
+      "default": 0,
+      "description": "Reading progress percentage"
+    }
+  },
+  "required": [
+    "user_id",
+    "book_id"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "write": {
+      "$or": [
+        {
+          "user_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

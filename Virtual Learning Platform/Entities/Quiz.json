@@ -1,0 +1,64 @@
+{
+  "name": "Quiz",
+  "type": "object",
+  "properties": {
+    "course_id": {
+      "type": "string",
+      "description": "Associated course ID"
+    },
+    "title": {
+      "type": "string",
+      "description": "Quiz title"
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "correct_answer": {
+            "type": "number"
+          },
+          "explanation": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Quiz questions"
+    },
+    "passing_score": {
+      "type": "number",
+      "default": 70,
+      "description": "Minimum score to pass (percentage)"
+    },
+    "time_limit": {
+      "type": "number",
+      "description": "Time limit in minutes"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "course_id",
+    "title",
+    "questions"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

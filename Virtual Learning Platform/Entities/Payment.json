@@ -1,0 +1,92 @@
+{
+  "name": "Payment",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "User who made the payment"
+    },
+    "certificate_id": {
+      "type": "string",
+      "description": "Certificate being purchased"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Payment amount"
+    },
+    "currency": {
+      "type": "string",
+      "default": "INR",
+      "description": "Payment currency"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": [
+        "credit_card",
+        "paypal",
+        "stripe"
+      ],
+      "description": "Payment method used"
+    },
+    "transaction_id": {
+      "type": "string",
+      "description": "External transaction ID"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "completed",
+        "failed",
+        "refunded"
+      ],
+      "default": "pending",
+      "description": "Payment status"
+    },
+    "payment_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When payment was made"
+    },
+    "download_url": {
+      "type": "string",
+      "description": "Secure download URL for certificate"
+    },
+    "download_expires": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When download link expires"
+    }
+  },
+  "required": [
+    "user_id",
+    "certificate_id",
+    "amount"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "user_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "write": {
+      "$or": [
+        {
+          "user_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

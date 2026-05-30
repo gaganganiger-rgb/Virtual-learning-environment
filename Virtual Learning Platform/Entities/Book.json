@@ -1,0 +1,77 @@
+{
+  "name": "Book",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Book title"
+    },
+    "author": {
+      "type": "string",
+      "description": "Book author"
+    },
+    "description": {
+      "type": "string",
+      "description": "Book description"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Computer Science",
+        "Electrical Engineering",
+        "Mechanical Engineering",
+        "Civil Engineering",
+        "Chemical Engineering",
+        "Mathematics",
+        "Physics",
+        "General"
+      ],
+      "description": "Book category"
+    },
+    "course_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Related course IDs"
+    },
+    "pdf_url": {
+      "type": "string",
+      "description": "URL to PDF file"
+    },
+    "cover_image": {
+      "type": "string",
+      "description": "Book cover image URL"
+    },
+    "pages": {
+      "type": "number",
+      "description": "Number of pages"
+    },
+    "isbn": {
+      "type": "string",
+      "description": "ISBN number"
+    },
+    "publication_year": {
+      "type": "number",
+      "description": "Publication year"
+    },
+    "is_available": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether book is available for reading"
+    }
+  },
+  "required": [
+    "title",
+    "author",
+    "category"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

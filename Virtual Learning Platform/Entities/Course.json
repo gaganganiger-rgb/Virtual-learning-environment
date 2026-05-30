@@ -1,0 +1,99 @@
+{
+  "name": "Course",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Course title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Course description"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Computer Science",
+        "Electrical Engineering",
+        "Mechanical Engineering",
+        "Civil Engineering",
+        "Chemical Engineering",
+        "Industrial Engineering",
+        "Aerospace Engineering",
+        "Mathematics",
+        "Physics",
+        "General"
+      ],
+      "description": "Course category"
+    },
+    "difficulty_level": {
+      "type": "string",
+      "enum": [
+        "Beginner",
+        "Intermediate",
+        "Advanced"
+      ],
+      "description": "Difficulty level"
+    },
+    "duration_hours": {
+      "type": "number",
+      "description": "Estimated duration in hours"
+    },
+    "video_url": {
+      "type": "string",
+      "description": "YouTube video URL"
+    },
+    "video_language": {
+      "type": "string",
+      "enum": [
+        "English",
+        "Spanish",
+        "French",
+        "German",
+        "Chinese",
+        "Japanese",
+        "Other"
+      ],
+      "default": "English",
+      "description": "Video language"
+    },
+    "thumbnail_url": {
+      "type": "string",
+      "description": "Course thumbnail image URL"
+    },
+    "instructor": {
+      "type": "string",
+      "description": "Instructor name"
+    },
+    "points_reward": {
+      "type": "number",
+      "default": 100,
+      "description": "Points awarded upon completion"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the course is active"
+    },
+    "prerequisites": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Prerequisite course IDs"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "category"
+  ],
+  "rls": {
+    "read": {},
+    "write": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
