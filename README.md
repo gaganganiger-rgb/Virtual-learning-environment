@@ -86,7 +86,7 @@ SOURCE database/schema.sql;
 
 ## 📸 Screenshots
 
-> _Add screenshots of your project here_
+
 > <img width="1920" height="1080" alt="Screenshot 2026-05-31 124442" src="https://github.com/user-attachments/assets/f7f795b9-7d5f-4412-b2d6-937670ab63a0" />
 
 
